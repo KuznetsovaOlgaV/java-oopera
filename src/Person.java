@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Person {
     private String name;
     private String surname;
@@ -24,5 +26,20 @@ public class Person {
     @Override
     public String toString() {
         return name + surname;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return Objects.equals(name, person.name) &&
+                Objects.equals(surname, person.surname) &&
+                gender == person.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, gender);
     }
 }
